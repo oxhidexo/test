@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}商人物語{% endblock %}</title>
+    <style>
+        body { 
+            background-image: url('/static/bg.gif');
+            background-repeat: repeat;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>商人物語</h1>
+        </div>
+        <div class="nav">
+            {% if user.is_authenticated %}
+                <a href="{% url 'home' %}">ホーム</a>
+                <a href="{% url 'logout' %}">ログアウト</a>
+            {% else %}
+                <a href="{% url 'login' %}">ログイン</a>
+                <a href="{% url 'register' %}">新規登録</a>
+            {% endif %}
+        </div>
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

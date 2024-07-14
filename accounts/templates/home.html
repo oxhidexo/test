@@ -1,94 +1,83 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>商人物語</title>
-    <style>
-        body { 
-            background-image: url('{% static "bg.gif" %}');
-            background-repeat: repeat;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .top-info {
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-        .top-nav {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        .header { text-align: center; margin-bottom: 20px; }
-        .login-form { text-align: center; margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ccc; padding: 5px; text-align: left; }
-        th { background-color: #e0e0e0; }
-        .rank { width: 50px; }
-        .shop-name { width: 150px; }
-        .owner { width: 100px; }
-        .popularity { width: 100px; }
-        .sales { width: 100px; }
-        .money { width: 100px; }
-        .items { width: 200px; }
-        .bold { font-weight: bold; }
-    </style>
-</head>
-<body>
-    <div class="top-info">
-        あきんどの街 <span class="bold">[ホーム]</span> [次回決算 07/14 18:00 まであと31時間37分]
-    </div>
-    <div class="top-nav">
-        街案内 > <span class="bold">[風景]</span> <span class="bold">[新聞]</span> <span class="bold">[図書館]</span> <span class="bold">【新規店舗オープン】残り73名様</span>
-    </div>
-    <div class="container">
-        <div class="header">
-            <img src='{% static "logo.gif" %}' alt="商人物語">
-        </div>
 
-        <div class="login-form">
-            <form action="#" method="post">
-                名前: <input type="text" name="username">
-                パスワード: <input type="password" name="password">
-                <input type="checkbox" name="remember" id="remember">
-                <label for="remember">クッキーで保存</label>
-                <input type="submit" value="店へ入る">
-            </form>
-        </div>
+{% block title %}ホーム{% endblock %}
 
-        <div class="top-stores">
-            <h2>トップ10の店舗: [詳細]</h2>
-            <table>
-                <tr>
-                    <th class="rank">点数</th>
-                    <th class="shop-name">店長</th>
-                    <th class="owner">ジョブ</th>
-                    <th class="popularity">店名 人気</th>
-                    <th class="sales">今期売上</th>
-                    <th class="money">資金</th>
-                    <th class="items">熟練 商品 【創業】 コメント</th>
-                </tr>
-                <!-- ここに店舗データの行を追加 -->
-                <tr>
-                    <td class="rank">No.1(→)<br>52398</td>
-                    <td class="shop-name"><img src="path_to_avatar.png" alt="Avatar"> YuiNa</td>
-                    <td class="owner"><img src="path_to_job_icon.png" alt="Job"></td>
-                    <td class="popularity">68%</td>
-                    <td class="sales">¥422,600</td>
-                    <td class="money">297%</td>
-                    <td class="items">銅鉱の鎚 ¥4,900<br>【73日】</td>
-                </tr>
-                <!-- 他の店舗データ行も同様に追加 -->
-            </table>
-        </div>
+{% block content %}
+<style>
+    .top-info {
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+    .top-nav {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+    .header { text-align: center; margin-bottom: 20px; }
+    .login-form { text-align: center; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #ccc; padding: 5px; text-align: left; }
+    th { background-color: #e0e0e0; }
+    .rank { width: 50px; }
+    .shop-name { width: 150px; }
+    .owner { width: 100px; }
+    .popularity { width: 100px; }
+    .sales { width: 100px; }
+    .money { width: 100px; }
+    .items { width: 200px; }
+    .bold { font-weight: bold; }
+</style>
+
+<div class="top-info">
+    あきんどの街 <span class="bold">[ホーム]</span> [次回決算 07/14 18:00 まであと31時間37分]
+</div>
+<div class="top-nav">
+    街案内 > <span class="bold">[風景]</span> <span class="bold">[新聞]</span> <span class="bold">[図書館]</span> <span class="bold">【新規店舗オープン】残り73名様</span>
+</div>
+<div class="container">
+    <div class="header">
+        <img src='{% static "logo.gif" %}' alt="商人物語">
     </div>
-</body>
-</html>
+
+    <div class="login-form">
+        <form action="{% url 'home' %}" method="post">
+            {% csrf_token %}
+            <label for="username">名前:</label>
+            <input type="text" name="username" id="username" required>
+            <label for="password">パスワード:</label>
+            <input type="password" name="password" id="password" required>
+            <input type="checkbox" name="remember" id="remember">
+            <label for="remember">クッキーで保存</label>
+            <input type="submit" value="店へ入る">
+        </form>
+    </div>
+
+    <div class="top-stores">
+        <h2>トップ10の店舗: [詳細]</h2>
+        <table>
+            <tr>
+                <th class="rank">点数</th>
+                <th class="shop-name">店長</th>
+                <th class="owner">ジョブ</th>
+                <th class="popularity">店名 人気</th>
+                <th class="sales">今期売上</th>
+                <th class="money">資金</th>
+                <th class="items">熟練 商品 【創業】 コメント</th>
+            </tr>
+            <!-- ここに店舗データの行を追加 -->
+            <tr>
+                <td class="rank">No.1(→)<br>52398</td>
+                <td class="shop-name"><img src="{% static 'path_to_avatar.png' %}" alt="Avatar"> YuiNa</td>
+                <td class="owner"><img src="{% static 'path_to_job_icon.png' %}" alt="Job"></td>
+                <td class="popularity">68%</td>
+                <td class="sales">¥422,600</td>
+                <td class="money">297%</td>
+                <td class="items">銅鉱の鎚 ¥4,900<br>【73日】</td>
+            </tr>
+            <!-- 他の店舗データ行も同様に追加 -->
+        </table>
+    </div>
+</div>
+{% endblock %}

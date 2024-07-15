@@ -1,0 +1,63 @@
+.main-container {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.nav a {
+    margin-right: 10px;
+}
+
+.breadcrumb {
+    margin-top: 10px;
+}
+
+.content {
+    display: flex;
+}
+
+.left-panel {
+    flex: 2;
+    margin-right: 20px;
+}
+
+.right-panel {
+    flex: 1;
+}
+
+.assistant {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.store img {
+    width: 100%;
+    height: auto;
+}
+
+.profile {
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.footer {
+    margin-top: 20px;
+}
+
+.footer table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.footer table, .footer th, .footer td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.footer th {
+    background-color: #f2f2f2;
+}

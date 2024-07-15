@@ -1,20 +1,18 @@
 # Create your views here.
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate,login
-from django.contrib.auth.forms import AuthenticationForm
+from .forms import CustomUserCreationForm  # Correct import
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
+        form = CustomUserCreationForm(request.POST)  # Use CustomUserCreationForm
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('home')
-
-            return redirect('home')  # Redirect to the home page after successful registration
+            form.save()
+            return redirect('home')
     else:
-        form = AuthenticationForm()
-    return render(request, 'home.html', {'form': form})
+        form = CustomUserCreationForm()  # Use CustomUserCreationForm
+    return render(request, 'accounts/register.html', {'form': form})
+
+@login_required
+def main(request):
+    return render(request, 'main.html')

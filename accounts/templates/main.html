@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="main-container">
+    <div class="header">
+        <div class="nav">
+            <a href="#">自店</a> | <a href="#">取引</a> | <a href="#">情報</a> | <a href="#">施設</a> | <a href="#">交流</a> | <a href="#">D</a> | <a href="#">次回決算</a> [07/16 06:00 まであと13時間58分]
+        </div>
+        <div class="breadcrumb">
+            麺街 > 自店 > 店内 > 倉庫 > お掃除 > 収支 > 手紙 > [LogOut] [×]
+        </div>
+    </div>
+    <div class="content">
+        <div class="left-panel">
+            <div class="assistant">
+                <p><strong>お手伝い:</strong> はじめまして。私が店のお手伝いをさせてもらってます。<br>
+                さっそくですが店長さま、[ゲームのやり方]はご存知ですか？</p>
+            </div>
+            <div class="store">
+                <img src="{% static 'store_image.png' %}" alt="Store Image">
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="profile">
+                <p><strong>RANK</strong> 12</p>
+                <p>ひで</p>
+                <p>資金: ¥200,000</p>
+                <p>時間: 24時間01分</p>
+                <p>人気: 50%</p>
+                <p>ごみ: 綺麗</p>
+                <p>コメント: <input type="text" value="綺麗"></p>
+                <button>変更</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>棚列: 現在1個: 維持費 ¥0</p>
+        <table>
+            <tr>
+                <th>棚No.</th>
+                <th>商品名</th>
+                <th>売値</th>
+                <th>標準価格</th>
+                <th>売却数</th>
+                <th>在庫数</th>
+                <th>今期売上数</th>
+                <th>前期売上数</th>
+            </tr>
+            <tr>
+                <td>棚1</td>
+                <td>なし</td>
+            </tr>
+        </table>
+        <p>ひでの出来事</p>
+        <p>07/15 16:02 [重要] ひでがリアカーを引いて、この街に現れました。</p>
+    </div>
+</div>
+{% endblock %}
